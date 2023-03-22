@@ -1,0 +1,50 @@
+/* Basic Style */
+:root {
+  /* Colors */
+  --basic-color: #5210ce;
+  --white-color: #fff;
+  /* Fonts */
+  --baloo-bhai: "Baloo Bhai 2", cursive;
+  --roboto: "Roboto", sans-serif;
+}
+
+/* Universal Style */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--roboto);
+  font-size: 1em;
+}
+
+/* container */
+.container {
+  max-width: 43.75em;
+  margin: auto;
+}
+
+/* element-bg */
+.element-bg {
+  width: 100%;
+  background: var(--basic-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  padding-top: 1.875em;
+  width: 13.5em;
+}
+
+/* Responsive breakpoint */
+/* Small devices */
+@media screen and (max-width: 576px) {
+  .element-bg {
+    height: 9.375em;
+  }
+
+  .logo {
+    width: 15em;
+  }
+}
