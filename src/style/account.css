@@ -1,0 +1,128 @@
+/* container */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* wrap */
+.wrap {
+  width: 70%;
+  position: relative;
+  background: var(--white-color);
+  border-top-left-radius: 0.625em;
+  border-top-right-radius: 0.625em;
+}
+
+/* account-info */
+.account-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-img {
+  width: 9.375em;
+  position: relative;
+  top: -56px;
+}
+
+.profile-img img {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.user-info {
+  text-align: center;
+  margin-top: -75px;
+  line-height: 0.7;
+  color: var(--font-color);
+}
+
+.user-name {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+.user-faculty {
+  font-size: 1.125rem;
+  font-weight: 200;
+}
+
+/* class-schedule */
+.class-schedule {
+  margin-top: 1em;
+  padding: 0 0.65em;
+}
+
+.title-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-class-btn {
+  font-size: 0.9em;
+  width: 95px;
+  height: 35px;
+  border-radius: 0.3125em;
+  border: none;
+  background: var(--basic-color);
+  color: var(--white-color);
+  cursor: pointer;
+}
+
+/* classes */
+.classes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625em;
+}
+
+.class p {
+  margin: 0;
+}
+
+.class {
+  background: var(--basic-color);
+  color: white;
+  padding: 1.3em 0.625em;
+  border-radius: 0.3125em;
+}
+
+.class-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625em;
+}
+
+.credits {
+  display: flex;
+  gap: 1.5em;
+}
+
+.schedule {
+  display: flex;
+  gap: 0.3125em;
+}
+
+/* Responsive Breakpoint */
+/* Small devices */
+@media screen and (max-width: 36em) {
+  .wrap {
+    top: -10em;
+    width: 93%;
+  }
+}
+
+/* Medium - Large devices */
+@media screen and (min-width: 36.1em) {
+  .element-bg {
+    height: 3em;
+  }
+
+  .wrap {
+    top: -7em;
+  }
+}
