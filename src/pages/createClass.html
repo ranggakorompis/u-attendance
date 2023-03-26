@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | NFC Unklab Attadance</title>
+    <link rel="stylesheet" href="../style/index.css" />
+    <link rel="stylesheet" href="../style/createClass.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;800&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Container -->
+    <div class="container">
+      <div class="element-bg"></div>
+      <img src="../../assets/waves/wave.svg" alt="wave" class="wave" />
+
+      <!-- Sign Up Form -->
+      <div class="wrap">
+        <h2 class="title">Buat Class</h2>
+        <form class="create-class-form">
+          <label for="class-name">Nama Class</label>
+          <input
+            type="text"
+            name="class-name"
+            id="class-name"
+            placeholder="Masukan Nama Class"
+            required
+          />
+          <label for="class-pararel">Pararel Class</label>
+          <select name="class-pararel" id="class-pararel" required>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+          </select>
+          <div class="form-wrap">
+            <div class="wrap-1">
+              <label for="class-code">Kode</label>
+              <input
+                type="text"
+                name="class-code"
+                id="class-code"
+                placeholder="Masukan Kode"
+                required
+              />
+            </div>
+            <div class="wrap-2">
+              <label for="credit">Credit</label>
+              <input
+                type="number"
+                name="credit"
+                id="credit"
+                placeholder="Masukan Credit"
+                required
+              />
+            </div>
+          </div>
+          <label for="room">Ruangan</label>
+          <input
+            type="text"
+            name="room"
+            id="room"
+            placeholder="Masukan Ruangan"
+            required
+          />
+          <label for="day">Hari</label>
+          <select name="day" id="day">
+            <option value="Senin, Rabu">Senin, Rabu</option>
+            <option value="Selasa, Kamis">Selasa, Kamis</option>
+            <option value="Jumat">Jumat</option>
+          </select>
+          <label for="class-time">Jam</label>
+          <select name="class-time" id="class-time">
+            <option value="07.00 - 08.30">07.00 - 08.30</option>
+            <option value="08.40 - 10.00">08.40 - 10.00</option>
+            <option value="10.10 - 12.00">10.10 - 12.00</option>
+          </select>
+          <button class="create-class-btn">Buat Class</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
