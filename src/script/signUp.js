@@ -32,9 +32,9 @@ const signUpForm = document.querySelector(".sign-up");
 const userSignUp = () => {
   // get value form
   const userName = signUpForm["user-name"].value;
-  const faculty = document.querySelectorAll("#faculty option").value;
   const userEmail = signUpForm["user-email"].value;
   const userPassword = signUpForm["user-password"].value;
+  const faculty = signUpForm["faculty"].value;
 
   // method signup user
   createUserWithEmailAndPassword(auth, userEmail, userPassword)
@@ -46,6 +46,7 @@ const userSignUp = () => {
       const userRef = ref(db, `User/${userId}`);
       set(userRef, {
         Username: userName,
+        Faculty: faculty,
         Email: userEmail,
         Password: userPassword,
       })
