@@ -3,6 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebas
 import {
   getAuth,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 
 const firebaseConfig = {
@@ -18,6 +19,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
+// Check user if auth
+onAuthStateChanged(auth, (user) => {
+  if (user) window.location = "./src/pages/account.html";
+});
 
 // Init variables
 const signInForm = document.querySelector(".login-form");
