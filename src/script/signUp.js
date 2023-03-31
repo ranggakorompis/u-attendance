@@ -53,6 +53,7 @@ const userSignUp = () => {
         .then(() => {
           alert(`You're account successfully created!`);
           signUpForm.reset();
+          window.location = "account.html";
         })
         .catch((error) => {
           console.error(error);
