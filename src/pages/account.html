@@ -23,14 +23,29 @@
 
       <!-- Wrapper -->
       <div class="wrap">
+        <!-- Logout button -->
+        <img
+          src="../../assets/icons/logout.svg"
+          alt="Logout"
+          class="logout-icon"
+        />
+
+        <!-- Logout message -->
+        <div class="logout-message">
+          <p>Logout</p>
+          <p>Apakah anda yakin akan logout?</p>
+          <button class="cancel-btn">Cancel</button>
+          <button class="logout-btn">Logout</button>
+        </div>
+
         <!-- Account Details -->
         <div class="account-info">
           <div class="profile-img">
             <img src="../../assets/profile-img/user.svg" alt="Profile Image" />
           </div>
           <div class="user-info">
-            <h2 class="user-name">Rangga Korompis</h2>
-            <h3 class="user-faculty">Ilmu Komputer</h3>
+            <h2 class="user-name"></h2>
+            <h3 class="user-faculty"></h3>
           </div>
         </div>
 
@@ -63,5 +78,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Firebase -->
+    <script src="../script/account.js" type="module"></script>
   </body>
 </html>

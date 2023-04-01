@@ -8,6 +8,7 @@
 
 /* wrap */
 .wrap {
+  position: relative;
   width: 70%;
   position: relative;
   background: var(--white-color);
@@ -107,12 +108,66 @@
   gap: 0.3125em;
 }
 
+/* logout */
+.logout-icon {
+  position: absolute;
+  width: 2.1875em;
+  right: 0;
+  cursor: pointer;
+}
+
+.logout-message {
+  background: var(--white-color);
+  color: var(--font-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 0.625em 0.9375em;
+  text-align: center;
+  border-radius: 0.3125em;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 0.3125em 0.9375em;
+  display: none;
+}
+
+.logout-message p:first-child {
+  font-weight: bold;
+}
+
+.logout-message p:nth-child(2) {
+  text-align: left;
+  margin: 1.2em 0;
+}
+
+.logout-message button {
+  font-size: 1.1rem;
+  padding: 0.3125em 0.9375em;
+  margin: 0 0.3125em;
+  border: none;
+  border-radius: 0.2125em;
+}
+
+.logout-message .cancel-btn {
+  border: 0.05em solid #000;
+}
+
+.logout-btn {
+  background: var(--basic-color);
+  color: var(--white-color);
+}
+
 /* Responsive Breakpoint */
 /* Small devices */
 @media screen and (max-width: 36em) {
   .wrap {
     top: -10em;
     width: 93%;
+  }
+
+  .logout-icon {
+    transform: translateY(-3.75em);
   }
 }
 
@@ -124,5 +179,13 @@
 
   .wrap {
     top: -7em;
+  }
+
+  .logout-icon {
+    transform: translateY(-2.8125em);
+  }
+
+  .logout-message {
+    top: 40%;
   }
 }
