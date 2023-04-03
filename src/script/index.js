@@ -41,7 +41,7 @@ const signInUser = () => {
       signInForm.reset();
     })
     .catch((error) => {
-      console.error(error);
+      alert(error);
     });
 };
 

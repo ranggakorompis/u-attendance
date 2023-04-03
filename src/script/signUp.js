@@ -56,11 +56,11 @@ const userSignUp = () => {
           window.location = "account.html";
         })
         .catch((error) => {
-          console.error(error);
+          alert(error);
         });
     })
     .catch((error) => {
-      console.error(error);
+      alert(error);
     });
 };
 
