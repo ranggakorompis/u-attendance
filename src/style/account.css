@@ -116,7 +116,7 @@
   cursor: pointer;
 }
 
-.logout-message {
+.ver-message {
   background: var(--white-color);
   color: var(--font-color);
   position: absolute;
@@ -132,16 +132,16 @@
   display: none;
 }
 
-.logout-message p:first-child {
+.ver-message p:first-child {
   font-weight: bold;
 }
 
-.logout-message p:nth-child(2) {
+.ver-message p:nth-child(2) {
   text-align: left;
   margin: 1.2em 0;
 }
 
-.logout-message button {
+.ver-message button {
   font-size: 1.1rem;
   padding: 0.3125em 0.9375em;
   margin: 0 0.3125em;
@@ -149,11 +149,11 @@
   border-radius: 0.2125em;
 }
 
-.logout-message .cancel-btn {
+.ver-message button :first-child {
   border: 0.05em solid #000;
 }
 
-.logout-btn {
+.ver-message button:last-child {
   background: var(--basic-color);
   color: var(--white-color);
 }

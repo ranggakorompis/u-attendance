@@ -57,17 +57,17 @@ const getUserData = (userId) => {
     });
 };
 
-// get data from firebase
+// get class data from firebase
 const getClassData = (userId) => {
   const refDb = ref(db);
   get(child(refDb, `User/${userId}/Classes`)).then((snapshot) => {
     const data = snapshot.val();
-    renderClass(data);
+    renderClass(data, userId);
   });
 };
 
 // function to render class in html
-const renderClass = (data) => {
+const renderClass = (data, id) => {
   // get class container
   const classes = document.querySelector(".classes");
   classes.innerHTML = "";
@@ -95,8 +95,12 @@ const renderClass = (data) => {
     removeBtn.src = "../../assets/icons/remove.svg";
     removeBtn.className = "remove-btn";
 
+    const classCode = classData.Classcode;
+    const className = classData.Classname;
+    const pararel = classData.Pararel;
+
     // assign value to the element
-    subject.innerHTML = `[<span class="class-code">${classData.Classcode}</span>] ${classData.Classname} - <span class="pararel-class">${classData.Pararel}</span>`;
+    subject.innerHTML = `[<span class="class-code">${classCode}</span>] ${className} - <span class="pararel-class">${pararel}</span>`;
 
     credits.innerHTML = `<p class="credit">Credit : ${classData.Credit}</p> \n <p class="room">${classData.Room}</p>`;
 
@@ -109,12 +113,49 @@ const renderClass = (data) => {
     kelasInfo.appendChild(subject);
     kelasInfo.appendChild(credits);
     kelasInfo.appendChild(schedule);
+
+    // remove class function
+    removeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      removeClassMsg(id, classCode);
+    });
   }
 };
 
-// function to remove class
-const removeClass = (userId) => {
-  // remove(ref(db, `User/${userId}/Classes/${}`))
+// create remove class message
+const removeClassMsg = (userId, classCode) => {
+  const removeClassMessage = document.querySelector(".remove-class-message");
+  const p1 = document.createElement("p");
+  p1.innerHTML = "Delete Class";
+  const p2 = document.createElement("p");
+  p2.innerHTML = "Are you sure to delete this class?";
+  const cancelClassBtn = document.createElement("button");
+  cancelClassBtn.innerHTML = "Cancel";
+  const removeClassBtn = document.createElement("button");
+  removeClassBtn.innerHTML = "Delete";
+
+  removeClassMessage.appendChild(p1);
+  removeClassMessage.appendChild(p2);
+  removeClassMessage.appendChild(cancelClassBtn);
+  removeClassMessage.appendChild(removeClassBtn);
+
+  removeClassMessage.style.display = "block";
+
+  cancelClassBtn.addEventListener("click", () => {
+    removeClassMessage.style.display = "none";
+  });
+
+  removeClassBtn.addEventListener("click", () => {
+    const userRef = `User/${userId}/Classes/${classCode}`;
+    remove(ref(db, userRef))
+      .then(() => {
+        alert("Class successfully deleted!");
+        location.reload();
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  });
 };
 
 // logout button
