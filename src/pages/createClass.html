@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up | NFC Unklab Attadance</title>
+    <title>Create Class | NFC Unklab Attadance</title>
     <link rel="stylesheet" href="../style/index.css" />
     <link rel="stylesheet" href="../style/createClass.css" />
     <!-- Google Fonts -->
@@ -23,14 +23,14 @@
 
       <!-- Sign Up Form -->
       <div class="wrap">
-        <h2 class="title">Buat Class</h2>
+        <h2 class="title">Create Class</h2>
         <form class="create-class-form">
-          <label for="class-name">Nama Class</label>
+          <label for="class-name">Class Name</label>
           <input
             type="text"
             name="class-name"
             id="class-name"
-            placeholder="Masukan Nama Class"
+            placeholder="Enter Full Class Name"
             required
           />
           <label for="class-pararel">Pararel Class</label>
@@ -41,12 +41,13 @@
           </select>
           <div class="form-wrap">
             <div class="wrap-1">
-              <label for="class-code">Kode</label>
+              <label for="class-code">Code</label>
               <input
                 type="text"
                 name="class-code"
                 id="class-code"
-                placeholder="Masukan Kode"
+                placeholder="Enter Class Code"
+                maxlength="7"
                 required
               />
             </div>
@@ -56,12 +57,12 @@
                 type="number"
                 name="credit"
                 id="credit"
-                placeholder="Masukan Credit"
+                placeholder="Enter Credit"
                 required
               />
             </div>
           </div>
-          <label for="room">Ruangan</label>
+          <label for="room">Room</label>
           <input
             type="text"
             name="room"
@@ -81,7 +82,7 @@
             <option value="08.40 - 10.00">08.40 - 10.00</option>
             <option value="10.10 - 12.00">10.10 - 12.00</option>
           </select>
-          <button class="create-class-btn">Buat Class</button>
+          <button class="create-class-btn">Create Class</button>
         </form>
       </div>
     </div>
