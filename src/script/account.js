@@ -164,33 +164,33 @@ const removeClassMsg = (userId, classCode) => {
   });
 };
 
-// NFC features
+// function to scan absent
 async function scanNfc() {
+  // create nfc container
+  const scanNfcContainer = document.querySelector(".scan-nfc");
+  const h2 = document.createElement("h2");
+  h2.innerHTML = "Ready to Scan";
+  const nfcIcon = document.createElement("div");
+  nfcIcon.className = "nfc-icon";
+  const nfcLogo = document.createElement("img");
+  nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+  const p1 = document.createElement("p");
+  p1.innerHTML = "Scan the device to the NFC tag.";
+  const cancelNfcBtn = document.createElement("button");
+  cancelNfcBtn.innerHTML = "Cancel";
+  cancelNfcBtn.className = "cancel-nfc-scan";
+
+  // append elements to the container
+  scanNfcContainer.appendChild(h2);
+  scanNfcContainer.appendChild(nfcIcon);
+  nfcIcon.appendChild(nfcLogo);
+  scanNfcContainer.appendChild(p1);
+  scanNfcContainer.appendChild(cancelNfcBtn);
+
+  scanNfcContainer.classList.toggle("fade-in");
+
+  // testing scan
   if ("NDEFReader" in window) {
-    // create nfc container
-    const scanNfcContainer = document.querySelector(".scan-nfc");
-    const h2 = document.createElement("h2");
-    h2.innerHTML = "Ready to Scan";
-    const nfcIcon = document.createElement("div");
-    nfcIcon.className = "nfc-icon";
-    const nfcLogo = document.createElement("img");
-    nfcLogo.src = "../../assets/icons/nfc-logo.svg";
-    const p1 = document.createElement("p");
-    p1.innerHTML = "Scan the device to the NFC tag.";
-    const cancelNfcBtn = document.createElement("button");
-    cancelNfcBtn.innerHTML = "Cancel";
-    cancelNfcBtn.className = "cancel-nfc-scan";
-
-    // append elements to the container
-    scanNfcContainer.appendChild(h2);
-    scanNfcContainer.appendChild(nfcIcon);
-    nfcIcon.appendChild(nfcLogo);
-    scanNfcContainer.appendChild(p1);
-    scanNfcContainer.appendChild(cancelNfcBtn);
-
-    scanNfcContainer.classList.toggle("fade-in");
-
-    // test nfc
     const ndef = new NDEFReader();
     try {
       await ndef.scan();
@@ -201,16 +201,20 @@ async function scanNfc() {
         }
       };
     } catch (error) {
-      alert("Gagal scan NFC tag!");
+      alert("Failed to scan card or NFC not supported on your device!");
+      h2.innerHTML = "Not Ready to Scan";
+      p1.innerHTML = "NFC is not supported on your device.";
     }
-
-    // cancel nfc scan
-    cancelNfcBtn.addEventListener("click", () => {
-      scanNfcContainer.classList.toggle("fade-out");
-    });
   } else {
     alert("NFC not supported!");
+    h2.innerHTML = "Not Ready to Scan";
+    p1.innerHTML = "NFC is not supported on your device.";
   }
+
+  // cancel nfc scan
+  cancelNfcBtn.addEventListener("click", () => {
+    scanNfcContainer.classList.toggle("fade-out");
+  });
 }
 
 // logout button
