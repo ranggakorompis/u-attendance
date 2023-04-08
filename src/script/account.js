@@ -235,3 +235,10 @@ logOutBtn.addEventListener("click", (e) => {
 cancelBtn.addEventListener("click", () => {
   logOutMessage.style.display = "none";
 });
+
+// nav humburger menu
+const humburger = document.querySelector(".humburger-menu");
+const navbar = document.querySelector(".navbar");
+humburger.addEventListener("click", () => {
+  navbar.classList.toggle("fade-in");
+});
