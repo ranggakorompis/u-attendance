@@ -95,16 +95,16 @@ const renderClass = (data, id) => {
     removeBtn.src = "../../assets/icons/remove.svg";
     removeBtn.className = "remove-btn";
 
-    const classCode = classData.Classcode;
-    const className = classData.Classname;
+    const classCode = classData.ClassCode;
+    const className = classData.ClassName;
     const pararel = classData.Pararel;
 
     // assign value to the element
     subject.innerHTML = `[<span class="class-code">${classCode}</span>] ${className} - <span class="pararel-class">${pararel}</span>`;
 
-    credits.innerHTML = `<p class="credit">Credit : ${classData.Credit}</p> \n <p class="room">${classData.Room}</p>`;
+    credits.innerHTML = `<p class="credit">Credit : ${classData.Credit}</p> \n <p class="room">${classData.Room} - ${classData.Floor}</p>`;
 
-    schedule.innerHTML = `<p class="day">${classData.Day}</p> \n <p class="time">${classData.Classtime}</p>`;
+    schedule.innerHTML = `<p class="day">${classData.Day}</p> \n <p class="time">${classData.StartTime} - ${classData.EndTime}</p>`;
 
     // append element
     classes.appendChild(kelas);

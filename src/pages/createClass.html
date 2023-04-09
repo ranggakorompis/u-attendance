@@ -38,6 +38,10 @@
             <option value="A">A</option>
             <option value="B">B</option>
             <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
           </select>
           <div class="form-wrap">
             <div class="wrap-1">
@@ -62,25 +66,40 @@
               />
             </div>
           </div>
-          <label for="room">Room</label>
-          <input
-            type="text"
-            name="room"
-            id="room"
-            placeholder="Masukan Ruangan"
-            required
-          />
-          <label for="day">Hari</label>
-          <select name="day" id="day">
+          <div class="form-wrap">
+            <div class="wrap-1">
+              <label for="start-time">Start</label>
+              <input type="time" name="start-time" id="start-time" required />
+            </div>
+            <div class="wrap-2">
+              <label for="end-time">End</label>
+              <input type="time" name="end-time" id="end-time" required />
+            </div>
+          </div>
+          <div class="form-wrap">
+            <div class="wrap-1">
+              <label for="room">Room</label>
+              <select name="room" id="room" required>
+                <option value="GK1">GK1</option>
+                <option value="GK2">GK2</option>
+                <option value="GK3">GK3</option>
+                <option value="GA">GA</option>
+              </select>
+            </div>
+            <div class="wrap-2">
+              <label for="floor">Floor</label>
+              <input type="text" name="floor" id="floor" />
+            </div>
+          </div>
+          <label for="day">Day</label>
+          <select name="day" id="day" required>
             <option value="Senin, Rabu">Senin, Rabu</option>
             <option value="Selasa, Kamis">Selasa, Kamis</option>
+            <option value="Senin">Senin</option>
+            <option value="Selasa">Selasa</option>
+            <option value="Rabu">Rabu</option>
+            <option value="Kamis">Kamis</option>
             <option value="Jumat">Jumat</option>
-          </select>
-          <label for="class-time">Jam</label>
-          <select name="class-time" id="class-time">
-            <option value="07.00 - 08.30">07.00 - 08.30</option>
-            <option value="08.40 - 10.00">08.40 - 10.00</option>
-            <option value="10.10 - 12.00">10.10 - 12.00</option>
           </select>
           <button class="create-class-btn">Create Class</button>
         </form>

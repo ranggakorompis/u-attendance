@@ -79,6 +79,10 @@ select {
   width: 9.2em;
 }
 
+.wrap-1 select {
+  width: 10em;
+}
+
 .wrap-1 label,
 .wrap-2 label {
   color: var(--font-color);

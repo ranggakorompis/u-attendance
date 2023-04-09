@@ -47,19 +47,23 @@ const createClass = (userId) => {
   const classCode = createForm["class-code"].value;
   const credit = createForm["credit"].value;
   const room = createForm["room"].value;
+  const floor = createForm["floor"].value;
   const day = createForm["day"].value;
-  const classTime = createForm["class-time"].value;
+  const startTime = createForm["start-time"].value;
+  const endTime = createForm["end-time"].value;
 
   //   create class data to the firebase
   const userRef = ref(db, `User/${userId}/Classes/${classCode}`);
   set(userRef, {
-    Classname: className,
+    ClassName: className,
     Pararel: pararel,
-    Classcode: classCode,
+    ClassCode: classCode,
     Credit: credit,
     Room: room,
+    Floor: floor,
     Day: day,
-    Classtime: classTime,
+    StartTime: startTime,
+    EndTime: endTime,
   })
     .then(() => {
       alert("Class successfully created!");
