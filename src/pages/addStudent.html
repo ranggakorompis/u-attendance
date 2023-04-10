@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Student | Unklab Attedance</title>
+    <link rel="stylesheet" href="../style/index.css" />
+    <link rel="stylesheet" href="../style/addStudent.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;800&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Container -->
+    <div class="container">
+      <div class="element-bg"></div>
+      <img src="../../assets/waves/wave.svg" alt="wave" class="wave" />
+
+      <a href="../pages/account.html">
+        <img
+          src="../../assets/icons/back.svg"
+          alt="Back Icon"
+          class="back-icon"
+        />
+      </a>
+
+      <!-- Sign Up Form -->
+      <div class="wrap">
+        <h2 class="title">Add Student</h2>
+        <form class="add-student-form">
+          <label for="class">Class</label>
+          <select name="class" id="class" required></select>
+          <label for="student-name">Student Name</label>
+          <input
+            type="text"
+            name="student-name"
+            id="student-name"
+            placeholder="Enter Student Name"
+          />
+          <label for="nim">NIM</label>
+          <input
+            type="text"
+            name="student-nim"
+            id="student-nim"
+            placeholder="Enter Student NIM"
+          />
+          <div class="add-student-btn">Add Student</div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Write NFC -->
+    <div class="write-nfc"></div>
+
+    <!-- firebase -->
+    <script src="../script/addStudent.js" type="module"></script>
+  </body>
+</html>
