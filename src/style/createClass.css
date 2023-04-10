@@ -89,7 +89,21 @@ select {
   margin-bottom: 0.3125em;
 }
 
+.back-icon {
+  position: absolute;
+  width: 1.875em;
+  top: 0.9375em;
+  left: 0;
+}
+
 /* Responsive Breakpoint */
+/* Small devices */
+@media screen and (max-width: 36em) {
+  .back-icon {
+    padding-left: 10px;
+  }
+}
+
 /* Medium - Large devices */
 @media screen and (min-width: 36.1em) {
   .element-bg {
@@ -98,5 +112,9 @@ select {
 
   .wrap {
     top: -10.5em;
+  }
+
+  .back-icon {
+    padding-left: 1.25em;
   }
 }
