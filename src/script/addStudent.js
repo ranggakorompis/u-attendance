@@ -109,7 +109,6 @@ const addStudent = (userId) => {
             StudentNIM: studentNIM,
           })
             .then(() => {
-              alert("Student successfully added!");
               h2.innerHTML = "Successfully Added";
               p1.innerHTML = "Student successfully added.";
               nfcLogo.src = "../../assets/icons/done.svg";
@@ -117,6 +116,9 @@ const addStudent = (userId) => {
             })
             .catch((error) => {
               alert(error);
+              h2.innerHTML = "Not Ready to Add";
+              p1.innerHTML = "NFC is not supported on your device.";
+              nfcLogo.src = "../../assets/icons/close.svg";
             });
         })
         .catch((error) => {
