@@ -110,6 +110,9 @@ const addStudent = (userId) => {
           })
             .then(() => {
               alert("Student successfully added!");
+              h2.innerHTML = "Successfully Added";
+              p1.innerHTML = "Student successfully added.";
+              nfcLogo.src = "../../assets/icons/done.svg";
               addStudentForm.reset();
             })
             .catch((error) => {
@@ -118,14 +121,21 @@ const addStudent = (userId) => {
         })
         .catch((error) => {
           alert(error);
+          h2.innerHTML = "Not Ready to Add";
+          p1.innerHTML = "NFC is not supported on your device.";
+          nfcLogo.src = "../../assets/icons/close.svg";
         });
     } else {
       alert("NFC not supported on your device.");
+      h2.innerHTML = "Not Ready to Add";
+      p1.innerHTML = "NFC is not supported on your device.";
+      nfcLogo.src = "../../assets/icons/close.svg";
     }
 
     // cancel nfc scan
     cancelNfcBtn.addEventListener("click", () => {
       writeNfc.classList.toggle("fade-out");
+      location.reload();
     });
   });
 };

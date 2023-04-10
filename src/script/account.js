@@ -214,6 +214,7 @@ async function scanNfc() {
   // cancel nfc scan
   cancelNfcBtn.addEventListener("click", () => {
     scanNfcContainer.classList.toggle("fade-out");
+    location.reload();
   });
 }
 
