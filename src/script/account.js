@@ -205,7 +205,10 @@ async function scanNfc(userId, className) {
           get(child(refDb, refNIM))
             .then((snapshot) => {
               const data = snapshot.val();
-              const endpoint = `https://sheetdb.io/api/v1/yngpuodmlyyfi`;
+
+              // post data absent to google sheet
+              const sheetName = className;
+              const endpoint = `https://sheetdb.io/api/v1/yngpuodmlyyfi?sheet=${sheetName}`;
               const fullName = `${data.LastName}, ${data.FirstName}`;
               const spreadSheetData = {
                 spreadSheetData: {
@@ -219,7 +222,6 @@ async function scanNfc(userId, className) {
                   "Day 5": "",
                 },
               };
-
               fetch(endpoint, {
                 method: "POST",
                 body: JSON.stringify(spreadSheetData),
@@ -228,11 +230,17 @@ async function scanNfc(userId, className) {
                 },
               })
                 .then((response) => response.json())
-                .then((result) => {
-                  alert("Success " + result);
+                .then(() => {
+                  // h2.innerHTML = "Successfully Absent";
+                  // p1.innerHTML = "Student successfully absent.";
+                  // nfcLogo.src = "../../assets/icons/done.svg";
+                  alert("Successfully absent.");
                 })
                 .catch((error) => {
-                  alert("Error:" + error);
+                  alert("Error: " + error);
+                  h2.innerHTML = "Not Ready to Scan";
+                  p1.innerHTML = "Data is not exits in class.";
+                  nfcLogo.src = "../../assets/icons/close.svg";
                 });
             })
             .catch((error) => {
