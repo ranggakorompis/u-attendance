@@ -123,7 +123,7 @@ const renderClass = (data, id) => {
     // call nfc function
     kelasInfo.addEventListener("click", (e) => {
       e.preventDefault();
-      scanNfc();
+      scanNfc(id, className);
     });
   }
 };
@@ -165,7 +165,7 @@ const removeClassMsg = (userId, classCode) => {
 };
 
 // function to scan absent
-async function scanNfc() {
+async function scanNfc(userId, className) {
   // create nfc container
   const scanNfcContainer = document.querySelector(".scan-nfc");
   const h2 = document.createElement("h2");
@@ -197,8 +197,19 @@ async function scanNfc() {
       ndef.onreading = async (event) => {
         const decoder = new TextDecoder();
         for (const record of event.message.records) {
-          const tagData = decoder.decode(record.data);
-          alert("data : " + tagData);
+          const nim = decoder.decode(record.data);
+
+          // cek data exist
+          const refDb = ref(db);
+          const refNIM = `User/${userId}/Students/${className}/${nim}`;
+          get(child(refDb, refNIM))
+            .then((snapshot) => {
+              const data = snapshot.val();
+              alert(data);
+            })
+            .catch((error) => {
+              alert(error);
+            });
         }
       };
     } catch (error) {
