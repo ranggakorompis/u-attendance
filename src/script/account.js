@@ -205,7 +205,34 @@ async function scanNfc(userId, className) {
           get(child(refDb, refNIM))
             .then((snapshot) => {
               const data = snapshot.val();
-              alert(data.StudentName);
+              const endpoint = `https://sheetdb.io/api/v1/yngpuodmlyyfi`;
+              const spreadSheetData = {
+                spreadSheetData: {
+                  "#": "",
+                  "Student Name": data.StudentName,
+                  "Student NIM": data.StudentNIM,
+                  "Day 1": "",
+                  "Day 2": "",
+                  "Day 3": "",
+                  "Day 4": "",
+                  "Day 5": "",
+                },
+              };
+
+              fetch(endpoint, {
+                method: "POST",
+                body: JSON.stringify(spreadSheetData),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              })
+                .then((response) => response.json())
+                .then((result) => {
+                  alert("Success " + result);
+                })
+                .catch((error) => {
+                  alert("Error:" + error);
+                });
             })
             .catch((error) => {
               alert(error);
