@@ -98,14 +98,16 @@ const addStudent = (userId) => {
         .then(() => {
           // get form value
           const className = addStudentForm["class"].value;
-          const studentName = addStudentForm["student-name"].value;
+          const firstName = addStudentForm["first-name"].value;
+          const lastName = addStudentForm["last-name"].value;
 
           const classRef = ref(
             db,
             `User/${userId}/Students/${className}/${studentNIM}`
           );
           set(classRef, {
-            StudentName: studentName,
+            FirstName: firstName,
+            LastName: lastName,
             StudentNIM: studentNIM,
           })
             .then(() => {
