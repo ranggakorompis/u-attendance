@@ -206,10 +206,11 @@ async function scanNfc(userId, className) {
             .then((snapshot) => {
               const data = snapshot.val();
               const endpoint = `https://sheetdb.io/api/v1/yngpuodmlyyfi`;
+              const fullName = `${data.LastName}, ${data.FirstName}`;
               const spreadSheetData = {
                 spreadSheetData: {
                   "#": "",
-                  "Student Name": data.StudentName,
+                  "Student Name": fullName,
                   "Student NIM": data.StudentNIM,
                   "Day 1": "",
                   "Day 2": "",
