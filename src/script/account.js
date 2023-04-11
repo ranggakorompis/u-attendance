@@ -197,7 +197,8 @@ async function scanNfc() {
       ndef.onreading = async (event) => {
         const decoder = new TextDecoder();
         for (const record of event.message.records) {
-          alert("data : " + decoder.decode(record.data));
+          const tagData = decoder.decode(record.data);
+          alert("data : " + tagData);
         }
       };
     } catch (error) {
