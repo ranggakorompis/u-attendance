@@ -207,8 +207,8 @@ async function scanNfc(userId, className) {
               const data = snapshot.val();
 
               // post data absent to google sheet
-              const sheetName = className;
-              const endpoint = `https://sheetdb.io/api/v1/yngpuodmlyyfi?sheet=${sheetName}`;
+              // const sheetName = className;
+              const endpoint = `https://sheetdb.io/api/v1/yngpuodmlyyfi`;
               const fullName = `${data.LastName}, ${data.FirstName}`;
               const spreadSheetData = {
                 spreadSheetData: {
