@@ -205,7 +205,7 @@ async function scanNfc(userId, className) {
           get(child(refDb, refNIM))
             .then((snapshot) => {
               const data = snapshot.val();
-              alert(data);
+              alert(data.StudentName);
             })
             .catch((error) => {
               alert(error);
