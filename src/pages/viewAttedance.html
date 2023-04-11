@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Attedance | NFC Unklab Attedance</title>
+    <link rel="stylesheet" href="../style/viewAttedance.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+Bhai+2:wght@400;800&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Student Attedance</h1>
+      <!-- Subject -->
+      <div class="subject">
+        <label for="class-name">Subject:</label>
+        <div class="input-wrap">
+          <select name="class-name" id="class-name">
+            <option value="class1">Research Project</option>
+            <option value="class2">class2</option>
+          </select>
+          <div class="generate-btn">Generate Sheet</div>
+        </div>
+      </div>
+
+      <!-- Attedance Sheet -->
+      <div class="attedance-sheet">
+        <h2 class="caption">Attedance Sheet</h2>
+        <table>
+          <tr>
+            <th>#</th>
+            <th>Student Name</th>
+            <th>Student NIM</th>
+            <th>Day 1</th>
+            <th>Day 2</th>
+            <th>Day 3</th>
+            <th>Day 4</th>
+            <th>Day 5</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Rangga Korompis</td>
+            <td>12345</td>
+            <td>Present</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
