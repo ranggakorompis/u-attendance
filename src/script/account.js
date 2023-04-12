@@ -98,6 +98,9 @@ const renderClass = (data, id) => {
     const classCode = classData.ClassCode;
     const className = classData.ClassName;
     const pararel = classData.Pararel;
+    const startTime = classData.StartTime;
+    const filterTime = startTime.substr(0, 2);
+    const startMinutes = startTime.substr(4, 6);
 
     // assign value to the element
     subject.innerHTML = `[<span class="class-code">${classCode}</span>] ${className} - <span class="pararel-class">${pararel}</span>`;
@@ -123,7 +126,7 @@ const renderClass = (data, id) => {
     // call nfc function
     kelasInfo.addEventListener("click", (e) => {
       e.preventDefault();
-      scanNfc(id, className);
+      scanNfc(id, className, filterTime, startMinutes);
     });
   }
 };
@@ -165,7 +168,7 @@ const removeClassMsg = (userId, classCode) => {
 };
 
 // function to scan absent
-async function scanNfc(userId, className) {
+async function scanNfc(userId, className, startTime, startMinutes) {
   // create nfc container
   const scanNfcContainer = document.querySelector(".scan-nfc");
   const h2 = document.createElement("h2");
@@ -189,7 +192,7 @@ async function scanNfc(userId, className) {
 
   scanNfcContainer.classList.toggle("fade-in");
 
-  // testing scan
+  // scan absent with nfc
   if ("NDEFReader" in window) {
     const ndef = new NDEFReader();
     try {
@@ -210,37 +213,22 @@ async function scanNfc(userId, className) {
               const sheetName = className;
               const endpoint = `https://sheetdb.io/api/v1/yngpuodmlyyfi?sheet=${sheetName}`;
               const fullName = `${data.LastName}, ${data.FirstName}`;
-              const spreadSheetData = {
-                spreadSheetData: {
-                  "#": "INCREMENT",
-                  "Student Name": fullName,
-                  "Student NIM": data.StudentNIM,
-                  "Status ": "Present",
-                },
-              };
-              fetch(endpoint, {
-                method: "POST",
-                body: JSON.stringify(spreadSheetData),
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              })
-                .then((response) => response.json())
-                .then(() => {
-                  // h2.innerHTML = "Successfully Absent";
-                  // p1.innerHTML = "Student successfully absent.";
-                  // nfcLogo.src = "../../assets/icons/done.svg";
-                  alert("Successfully absent.");
-                })
-                .catch((error) => {
-                  alert("Error: " + error);
-                  h2.innerHTML = "Not Ready to Scan";
-                  p1.innerHTML = "Data is not exits in class.";
-                  nfcLogo.src = "../../assets/icons/close.svg";
-                });
+              const studentNIM = data.StudentNIM;
+
+              // post absent to google sheet
+              postAbsent(
+                startTime,
+                startMinutes,
+                endpoint,
+                fullName,
+                studentNIM
+              );
             })
             .catch((error) => {
               alert(error);
+              h2.innerHTML = "Not Ready to Scan";
+              p1.innerHTML = "Data is not exits in class.";
+              nfcLogo.src = "../../assets/icons/close.svg";
             });
         }
       };
@@ -261,6 +249,104 @@ async function scanNfc(userId, className) {
     location.reload();
   });
 }
+
+// post absent to google sheet
+const postAbsent = (
+  startTime,
+  startMinutes,
+  endpoint,
+  fullName,
+  studentNIM
+) => {
+  // get current time
+  const date = new Date();
+  const currentHours = date.getHours();
+  const currentMinutes = date.getMinutes();
+
+  // absent status
+  const present = "Present";
+  const late = "Late";
+  const absent = "Absent";
+
+  // check status absent
+  if (currentHours === Number(startTime)) {
+    if (currentMinutes >= startMinutes && currentMinutes <= startMinutes + 10) {
+      const spreadSheetData = {
+        spreadSheetData: {
+          "#": "INCREMENT",
+          "Student Name": fullName,
+          "Student NIM": studentNIM,
+          "Status ": present,
+        },
+      };
+      fetch(endpoint, {
+        method: "POST",
+        body: JSON.stringify(spreadSheetData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then(() => {
+          // h2.innerHTML = "Successfully Absent";
+          // p1.innerHTML = "Student successfully absent.";
+          // nfcLogo.src = "../../assets/icons/done.svg";
+          alert("Successfully absent.");
+        });
+    } else if (
+      currentMinutes >= startMinutes &&
+      currentMinutes <= startMinutes + 20
+    ) {
+      const spreadSheetData = {
+        spreadSheetData: {
+          "#": "INCREMENT",
+          "Student Name": fullName,
+          "Student NIM": studentNIM,
+          "Status ": late,
+        },
+      };
+      fetch(endpoint, {
+        method: "POST",
+        body: JSON.stringify(spreadSheetData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then(() => {
+          // h2.innerHTML = "Successfully Absent";
+          // p1.innerHTML = "Student successfully absent.";
+          // nfcLogo.src = "../../assets/icons/done.svg";
+          alert("Successfully absent.");
+        });
+    } else {
+      const spreadSheetData = {
+        spreadSheetData: {
+          "#": "INCREMENT",
+          "Student Name": fullName,
+          "Student NIM": studentNIM,
+          "Status ": absent,
+        },
+      };
+      fetch(endpoint, {
+        method: "POST",
+        body: JSON.stringify(spreadSheetData),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then(() => {
+          // h2.innerHTML = "Successfully Absent";
+          // p1.innerHTML = "Student successfully absent.";
+          // nfcLogo.src = "../../assets/icons/done.svg";
+          alert("Successfully absent.");
+        });
+    }
+  } else {
+    console.log("error");
+  }
+};
 
 // logout button
 const logOutIcon = document.querySelector(".logout-icon");
