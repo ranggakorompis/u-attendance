@@ -295,10 +295,7 @@ const postAbsent = (
       })
         .then((response) => response.json())
         .then(() => {
-          // h2.innerHTML = "Successfully Absent";
-          // p1.innerHTML = "Student successfully absent.";
-          // nfcLogo.src = "../../assets/icons/done.svg";
-          alert("Successfully absent.");
+          alert(`Absent status : ${present}`);
         });
     } else if (
       currentMinutes >= startMinutes &&
@@ -321,10 +318,7 @@ const postAbsent = (
       })
         .then((response) => response.json())
         .then(() => {
-          // h2.innerHTML = "Successfully Absent";
-          // p1.innerHTML = "Student successfully absent.";
-          // nfcLogo.src = "../../assets/icons/done.svg";
-          alert("Successfully absent.");
+          alert(`Absent status : ${late}`);
         });
     } else {
       const spreadSheetData = {
@@ -344,14 +338,11 @@ const postAbsent = (
       })
         .then((response) => response.json())
         .then(() => {
-          // h2.innerHTML = "Successfully Absent";
-          // p1.innerHTML = "Student successfully absent.";
-          // nfcLogo.src = "../../assets/icons/done.svg";
-          alert("Successfully absent.");
+          alert(`Absent Status : ${absent}`);
         });
     }
   } else {
-    console.log("error");
+    alert("Not ready to absent.");
   }
 };
 
