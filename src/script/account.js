@@ -120,7 +120,7 @@ const renderClass = (data, id) => {
     // remove class function
     removeBtn.addEventListener("click", (e) => {
       e.preventDefault();
-      removeClassMsg(id, classCode);
+      removeClassMsg(id, classCode, className);
     });
 
     // call nfc function
@@ -132,7 +132,7 @@ const renderClass = (data, id) => {
 };
 
 // create remove class message
-const removeClassMsg = (userId, classCode) => {
+const removeClassMsg = (userId, classCode, className) => {
   const removeClassMessage = document.querySelector(".remove-class-message");
   const p1 = document.createElement("p");
   p1.innerHTML = "Delete Class";
@@ -156,10 +156,17 @@ const removeClassMsg = (userId, classCode) => {
 
   removeClassBtn.addEventListener("click", () => {
     const userRef = `User/${userId}/Classes/${classCode}`;
+    const studentRef = `User/${userId}/Students/${className}`;
     remove(ref(db, userRef))
       .then(() => {
-        alert("Class successfully deleted!");
-        location.reload();
+        remove(ref(db, studentRef))
+          .then(() => {
+            alert("Class successfully deleted!");
+            location.reload();
+          })
+          .catch((error) => {
+            alert(error);
+          });
       })
       .catch((error) => {
         alert(error);
