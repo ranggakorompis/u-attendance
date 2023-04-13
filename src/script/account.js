@@ -218,7 +218,7 @@ async function scanNfc(userId, className, startTime, startMinutes) {
 
               // post data absent to google sheet
               const sheetName = className;
-              const endpoint = `https://sheetdb.io/api/v1/yngpuodmlyyfi?sheet=${sheetName}`;
+              const endpoint = `https://sheetdb.io/api/v1/i8z42whbaabc6?sheet=${sheetName}`;
               const fullName = `${data.LastName}, ${data.FirstName}`;
               const studentNIM = data.StudentNIM;
 
@@ -284,7 +284,7 @@ const postAbsent = (
         spreadSheetData: {
           "#": "INCREMENT",
           "Student Name": fullName,
-          "Student NIM": studentNIM,
+          "NIM ": studentNIM,
           "Status ": present,
         },
       };
@@ -307,7 +307,7 @@ const postAbsent = (
         spreadSheetData: {
           "#": "INCREMENT",
           "Student Name": fullName,
-          "Student NIM": studentNIM,
+          "NIM ": studentNIM,
           "Status ": late,
         },
       };
@@ -327,7 +327,7 @@ const postAbsent = (
         spreadSheetData: {
           "#": "INCREMENT",
           "Student Name": fullName,
-          "Student NIM": studentNIM,
+          "NIM ": studentNIM,
           "Status ": absent,
         },
       };
