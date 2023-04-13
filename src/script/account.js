@@ -271,13 +271,15 @@ const postAbsent = (
   const currentMinutes = date.getMinutes();
 
   // absent status
+  const presentStatus = currentMinutes + 10;
+  const lateStatus = presentStatus + 10;
   const present = "Present";
   const late = "Late";
   const absent = "Absent";
 
   // check status absent
   if (currentHours === Number(startTime)) {
-    if (currentMinutes >= startMinutes && currentMinutes <= startMinutes + 10) {
+    if (currentMinutes >= startMinutes && currentMinutes <= presentStatus) {
       const spreadSheetData = {
         spreadSheetData: {
           "#": "INCREMENT",
@@ -298,8 +300,8 @@ const postAbsent = (
           alert(`Absent status : ${present}`);
         });
     } else if (
-      currentMinutes >= startMinutes &&
-      currentMinutes <= startMinutes + 20
+      currentMinutes >= presentStatus &&
+      currentMinutes <= lateStatus
     ) {
       const spreadSheetData = {
         spreadSheetData: {
