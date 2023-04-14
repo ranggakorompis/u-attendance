@@ -222,13 +222,15 @@ async function scanNfc(userId, className, startTime, startMinutes) {
               const fullName = `${data.LastName}, ${data.FirstName}`;
               const studentNIM = data.StudentNIM;
 
-              // post absent to google sheet
               postAbsent(
                 startTime,
                 startMinutes,
                 endpoint,
                 fullName,
-                studentNIM
+                studentNIM,
+                h2,
+                nfcLogo,
+                p1
               );
             })
             .catch((error) => {
@@ -263,7 +265,10 @@ const postAbsent = (
   startMinutes,
   endpoint,
   fullName,
-  studentNIM
+  studentNIM,
+  h2,
+  nfcLogo,
+  p1
 ) => {
   // get current time
   const date = new Date();
@@ -297,7 +302,15 @@ const postAbsent = (
       })
         .then((response) => response.json())
         .then(() => {
-          alert(`Absent status : ${present}`);
+          h2.innerHTML = `Student ${present}`;
+          nfcLogo.src = "../../assets/icons/done.svg";
+          p1.innerHTML = `The student is ${present}`;
+
+          setTimeout(() => {
+            h2.innerHTML = "Ready to Scan";
+            nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+            p1.innerHTML = "Scan the device to the NFC tag.";
+          }, 2000);
         });
     } else if (
       currentMinutes >= presentStatus &&
@@ -320,7 +333,15 @@ const postAbsent = (
       })
         .then((response) => response.json())
         .then(() => {
-          alert(`Absent status : ${late}`);
+          h2.innerHTML = `Student ${late}`;
+          nfcLogo.src = "../../assets/icons/done.svg";
+          p1.innerHTML = `The student is ${late}`;
+
+          setTimeout(() => {
+            h2.innerHTML = "Ready to Scan";
+            nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+            p1.innerHTML = "Scan the device to the NFC tag.";
+          }, 2000);
         });
     } else {
       const spreadSheetData = {
@@ -340,7 +361,15 @@ const postAbsent = (
       })
         .then((response) => response.json())
         .then(() => {
-          alert(`Absent Status : ${absent}`);
+          h2.innerHTML = `Student ${absent}`;
+          nfcLogo.src = "../../assets/icons/done.svg";
+          p1.innerHTML = `The student is ${absent}`;
+
+          setTimeout(() => {
+            h2.innerHTML = "Ready to Scan";
+            nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+            p1.innerHTML = "Scan the device to the NFC tag.";
+          }, 2000);
         });
     }
   } else {
