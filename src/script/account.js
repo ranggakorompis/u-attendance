@@ -100,7 +100,7 @@ const renderClass = (data, id) => {
     const pararel = classData.Pararel;
     const startTime = classData.StartTime;
     const filterTime = startTime.substr(0, 2);
-    const startMinutes = startTime.substr(4, 6);
+    const startMinutes = startTime.substr(3, 5);
 
     // assign value to the element
     subject.innerHTML = `[<span class="class-code">${classCode}</span>] ${className} - <span class="pararel-class">${pararel}</span>`;
@@ -276,7 +276,7 @@ const postAbsent = (
   const currentMinutes = date.getMinutes();
 
   // absent status
-  const presentStatus = currentMinutes + 10;
+  const presentStatus = startMinutes + 10;
   const lateStatus = presentStatus + 10;
   const present = "Present";
   const late = "Late";
