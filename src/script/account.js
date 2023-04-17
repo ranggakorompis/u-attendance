@@ -274,6 +274,10 @@ const postAbsent = (
   const date = new Date();
   const currentHours = date.getHours();
   const currentMinutes = date.getMinutes();
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  const localTime = `${day}/${month}/${year}`;
 
   // absent status
   const presentStatus = startMinutes + 10;
@@ -291,6 +295,7 @@ const postAbsent = (
           "Student Name": fullName,
           "NIM ": studentNIM,
           "Status ": present,
+          "Date ": localTime,
         },
       };
       fetch(endpoint, {
@@ -322,6 +327,7 @@ const postAbsent = (
           "Student Name": fullName,
           "NIM ": studentNIM,
           "Status ": late,
+          "Date ": localTime,
         },
       };
       fetch(endpoint, {
@@ -350,6 +356,7 @@ const postAbsent = (
           "Student Name": fullName,
           "NIM ": studentNIM,
           "Status ": absent,
+          "Date ": localTime,
         },
       };
       fetch(endpoint, {
