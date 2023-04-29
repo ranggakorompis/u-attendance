@@ -50,11 +50,6 @@ const userSignUp = () => {
         Email: userEmail,
         Password: userPassword,
       }).then(() => {
-        alertMessage.style.display = "block";
-        setTimeout(() => {
-          alertMessage.style.display = "none";
-        }, 5000);
-        signUpForm.reset();
         window.location = "account.html";
       });
     })

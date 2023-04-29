@@ -101,14 +101,15 @@ select {
 }
 
 .create-class-message {
-  position: absolute;
-  top: 3.125em;
+  position: fixed;
+  top: 0.625em;
   text-align: center;
   padding: 0.3125em 1em;
   border-radius: 0.625em;
   background: #e6e6e6;
   z-index: 999;
   transform: translateY(-150%);
+  transition: 0.5s;
 }
 
 .ok-button {

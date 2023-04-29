@@ -66,6 +66,7 @@ select {
 
 .alert-message {
   background: rgba(50, 205, 50, 0.7);
+  color: white;
 }
 
 /* Responsive Breakpoint */

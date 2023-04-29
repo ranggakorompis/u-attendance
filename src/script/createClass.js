@@ -66,9 +66,7 @@ const createClass = (userId) => {
   }).then(() => {
     const createClassMessage = document.querySelector(".create-class-message");
     const okButton = document.querySelector(".ok-button");
-    createClassMessage.style.transition = ".5s";
     createClassMessage.style.transform = "translateY(0%)";
-    document.documentElement.scrollTop = 0;
     okButton.addEventListener("click", () => {
       location.reload();
     });
