@@ -287,6 +287,23 @@ nav {
   width: 30px;
 }
 
+.account-alert-message {
+  position: fixed;
+  top: 1em;
+  text-align: center;
+  background: #e6e6e6;
+  padding: 0.5em 1.2em;
+  border-radius: 0.625em;
+  z-index: 999;
+  transform: translateY(-150%);
+  transition: 0.5s;
+}
+
+.ok-btn {
+  color: blue;
+  cursor: pointer;
+}
+
 /* Responsive Breakpoint */
 /* Small devices */
 @media screen and (max-width: 36em) {

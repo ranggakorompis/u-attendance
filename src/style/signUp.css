@@ -64,6 +64,10 @@ select {
   left: 0;
 }
 
+.alert-message {
+  background: rgba(50, 205, 50, 0.7);
+}
+
 /* Responsive Breakpoint */
 /* Small devices */
 @media screen and (max-width: 36em) {

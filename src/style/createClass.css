@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 /* container */
 .container {
   display: flex;
@@ -94,6 +98,23 @@ select {
   width: 1.875em;
   top: 0.9375em;
   left: 0;
+}
+
+.create-class-message {
+  position: absolute;
+  top: 3.125em;
+  text-align: center;
+  padding: 0.3125em 1em;
+  border-radius: 0.625em;
+  background: #e6e6e6;
+  z-index: 999;
+  transform: translateY(-150%);
+}
+
+.ok-button {
+  margin-top: 1.3em;
+  color: blue;
+  cursor: pointer;
 }
 
 /* Responsive Breakpoint */

@@ -11,13 +11,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDvurrrDOnEc4OnT4o-P39b_7BYB0Z5MnY",
-  authDomain: "u-attedance.firebaseapp.com",
-  databaseURL: "https://u-attedance-default-rtdb.firebaseio.com",
-  projectId: "u-attedance",
-  storageBucket: "u-attedance.appspot.com",
-  messagingSenderId: "461405246415",
-  appId: "1:461405246415:web:814ea933e55e8de96338ba",
+  apiKey: "AIzaSyCccspIXKivyEeOx51oxDijgW6LcG0ee2s",
+  authDomain: "u-attendance-6869e.firebaseapp.com",
+  projectId: "u-attendance-6869e",
+  storageBucket: "u-attendance-6869e.appspot.com",
+  messagingSenderId: "258026842998",
+  appId: "1:258026842998:web:1407c2409dbf2cd10ce857",
 };
 
 // Initialize Firebase
@@ -35,6 +34,7 @@ const userSignUp = () => {
   const userEmail = signUpForm["user-email"].value;
   const userPassword = signUpForm["user-password"].value;
   const faculty = signUpForm["faculty"].value;
+  const alertMessage = document.querySelector(".alert-message");
 
   // method signup user
   createUserWithEmailAndPassword(auth, userEmail, userPassword)
@@ -49,18 +49,23 @@ const userSignUp = () => {
         Faculty: faculty,
         Email: userEmail,
         Password: userPassword,
-      })
-        .then(() => {
-          alert(`You're account successfully created!`);
-          signUpForm.reset();
-          window.location = "account.html";
-        })
-        .catch((error) => {
-          alert(error);
-        });
+      }).then(() => {
+        alertMessage.style.display = "block";
+        setTimeout(() => {
+          alertMessage.style.display = "none";
+        }, 5000);
+        signUpForm.reset();
+        window.location = "account.html";
+      });
     })
-    .catch((error) => {
-      alert(error);
+    .catch(() => {
+      alertMessage.innerHTML = "account already signup!";
+      alertMessage.style.background = "rgba(255,0,0,.7)";
+      alertMessage.style.display = "block";
+      setTimeout(() => {
+        alertMessage.style.display = "none";
+      }, 5000);
+      signUpForm.reset();
     });
 };
 

@@ -11,13 +11,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDvurrrDOnEc4OnT4o-P39b_7BYB0Z5MnY",
-  authDomain: "u-attedance.firebaseapp.com",
-  databaseURL: "https://u-attedance-default-rtdb.firebaseio.com",
-  projectId: "u-attedance",
-  storageBucket: "u-attedance.appspot.com",
-  messagingSenderId: "461405246415",
-  appId: "1:461405246415:web:814ea933e55e8de96338ba",
+  apiKey: "AIzaSyCccspIXKivyEeOx51oxDijgW6LcG0ee2s",
+  authDomain: "u-attendance-6869e.firebaseapp.com",
+  projectId: "u-attendance-6869e",
+  storageBucket: "u-attendance-6869e.appspot.com",
+  messagingSenderId: "258026842998",
+  appId: "1:258026842998:web:1407c2409dbf2cd10ce857",
 };
 
 // Initialize Firebase
@@ -64,12 +63,14 @@ const createClass = (userId) => {
     Day: day,
     StartTime: startTime,
     EndTime: endTime,
-  })
-    .then(() => {
-      alert("Class successfully created!");
-      createForm.reset();
-    })
-    .catch((error) => {
-      alert(error);
+  }).then(() => {
+    const createClassMessage = document.querySelector(".create-class-message");
+    const okButton = document.querySelector(".ok-button");
+    createClassMessage.style.transition = ".5s";
+    createClassMessage.style.transform = "translateY(0%)";
+    document.documentElement.scrollTop = 0;
+    okButton.addEventListener("click", () => {
+      location.reload();
     });
+  });
 };

@@ -13,13 +13,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDvurrrDOnEc4OnT4o-P39b_7BYB0Z5MnY",
-  authDomain: "u-attedance.firebaseapp.com",
-  databaseURL: "https://u-attedance-default-rtdb.firebaseio.com",
-  projectId: "u-attedance",
-  storageBucket: "u-attedance.appspot.com",
-  messagingSenderId: "461405246415",
-  appId: "1:461405246415:web:814ea933e55e8de96338ba",
+  apiKey: "AIzaSyCccspIXKivyEeOx51oxDijgW6LcG0ee2s",
+  authDomain: "u-attendance-6869e.firebaseapp.com",
+  projectId: "u-attendance-6869e",
+  storageBucket: "u-attendance-6869e.appspot.com",
+  messagingSenderId: "258026842998",
+  appId: "1:258026842998:web:1407c2409dbf2cd10ce857",
 };
 
 // Initialize Firebase
@@ -39,22 +38,18 @@ onAuthStateChanged(auth, (user) => {
 // init variables
 const userName = document.querySelector(".user-name");
 const faculty = document.querySelector(".user-faculty");
+const accountAlertMessage = document.querySelector(".account-alert-message");
+const okBtn = document.querySelector(".ok-btn");
 
 // function to get data from database
 const getUserData = (userId) => {
   const refDb = ref(db);
-  get(child(refDb, `User/${userId}`))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        userName.innerHTML = snapshot.val().Username;
-        faculty.innerHTML = snapshot.val().Faculty;
-      } else {
-        alert("Data not exists!");
-      }
-    })
-    .catch((error) => {
-      alert(error);
-    });
+  get(child(refDb, `User/${userId}`)).then((snapshot) => {
+    if (snapshot.exists()) {
+      userName.innerHTML = snapshot.val().Username;
+      faculty.innerHTML = snapshot.val().Faculty;
+    }
+  });
 };
 
 // get class data from firebase
@@ -152,25 +147,22 @@ const removeClassMsg = (userId, classCode, className) => {
 
   cancelClassBtn.addEventListener("click", () => {
     removeClassMessage.style.display = "none";
+    location.reload();
   });
 
   removeClassBtn.addEventListener("click", () => {
     const userRef = `User/${userId}/Classes/${classCode}`;
     const studentRef = `User/${userId}/Students/${className}`;
-    remove(ref(db, userRef))
-      .then(() => {
-        remove(ref(db, studentRef))
-          .then(() => {
-            alert("Class successfully deleted!");
-            location.reload();
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      })
-      .catch((error) => {
-        alert(error);
+    remove(ref(db, userRef)).then(() => {
+      remove(ref(db, studentRef)).then(() => {
+        accountAlertMessage.style.transform = "translateY(0%)";
+        document.documentElement.scrollTop = 0;
+        removeClassMessage.style.display = "none";
+        okBtn.addEventListener("click", () => {
+          location.reload();
+        });
       });
+    });
   });
 };
 
@@ -233,8 +225,7 @@ async function scanNfc(userId, className, startTime, startMinutes) {
                 p1
               );
             })
-            .catch((error) => {
-              alert(error);
+            .catch(() => {
               h2.innerHTML = "Not Ready to Scan";
               p1.innerHTML = "Data is not exits in class.";
               nfcLogo.src = "../../assets/icons/close.svg";
@@ -242,12 +233,10 @@ async function scanNfc(userId, className, startTime, startMinutes) {
         }
       };
     } catch (error) {
-      alert("Failed to scan card or NFC not supported on your device!");
       h2.innerHTML = "Not Ready to Scan";
       p1.innerHTML = "NFC is not supported on your device.";
     }
   } else {
-    alert("NFC not supported!");
     h2.innerHTML = "Not Ready to Scan";
     p1.innerHTML = "NFC is not supported on your device.";
   }
@@ -380,7 +369,9 @@ const postAbsent = (
         });
     }
   } else {
-    alert("Not ready to absent.");
+    h2.innerHTML = "Not Ready to Scan";
+    nfcLogo = "../../assets/icons/close.svg";
+    p1.innerHTML = "Class is not ready to take attendance!";
   }
 };
 
