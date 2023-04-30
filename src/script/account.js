@@ -278,94 +278,142 @@ const postAbsent = (
   // check status absent
   if (currentHours === Number(startTime)) {
     if (currentMinutes >= startMinutes && currentMinutes <= presentStatus) {
-      const spreadSheetData = {
-        spreadSheetData: {
-          "#": "INCREMENT",
-          "Student Name": fullName,
-          "NIM ": studentNIM,
-          "Status ": present,
-          "Date ": localTime,
-        },
-      };
-      fetch(endpoint, {
-        method: "POST",
-        body: JSON.stringify(spreadSheetData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      fetch(`https://sheetdb.io/api/v1/i8z42whbaabc6/search?NIM =${studentNIM}`)
         .then((response) => response.json())
-        .then(() => {
-          h2.innerHTML = `Student ${present}`;
-          nfcLogo.src = "../../assets/icons/done.svg";
-          p1.innerHTML = `The student is ${present}`;
+        .then((data) => {
+          if (data.length === 1) {
+            fetch(
+              `https://sheetdb.io/api/v1/i8z42whbaabc6/NIM /${studentNIM}`,
+              {
+                method: "PATCH",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  data: {
+                    "Status ": present,
+                    "Date ": localTime,
+                  },
+                }),
+              }
+            )
+              .then((response) => response.json())
+              .then(() => {
+                h2.innerHTML = `Student ${present}`;
+                nfcLogo.src = "../../assets/icons/done.svg";
+                p1.innerHTML = `The student is ${present}`;
 
-          setTimeout(() => {
-            h2.innerHTML = "Ready to Scan";
-            nfcLogo.src = "../../assets/icons/nfc-logo.svg";
-            p1.innerHTML = "Scan the device to the NFC tag.";
-          }, 2000);
+                setTimeout(() => {
+                  h2.innerHTML = "Ready to Scan";
+                  nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+                  p1.innerHTML = "Scan the device to the NFC tag.";
+                }, 2000);
+              });
+          } else {
+            h2.innerHTML = `Not found student`;
+            nfcLogo.src = "../../assets/icons/close.svg";
+            p1.innerHTML = `Student is not registered in class.`;
+
+            setTimeout(() => {
+              h2.innerHTML = "Ready to Scan";
+              nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+              p1.innerHTML = "Scan the device to the NFC tag.";
+            }, 2000);
+          }
         });
     } else if (
       currentMinutes >= presentStatus &&
       currentMinutes <= lateStatus
     ) {
-      const spreadSheetData = {
-        spreadSheetData: {
-          "#": "INCREMENT",
-          "Student Name": fullName,
-          "NIM ": studentNIM,
-          "Status ": late,
-          "Date ": localTime,
-        },
-      };
-      fetch(endpoint, {
-        method: "POST",
-        body: JSON.stringify(spreadSheetData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      fetch(`https://sheetdb.io/api/v1/i8z42whbaabc6/search?NIM =${studentNIM}`)
         .then((response) => response.json())
-        .then(() => {
-          h2.innerHTML = `Student ${late}`;
-          nfcLogo.src = "../../assets/icons/done.svg";
-          p1.innerHTML = `The student is ${late}`;
+        .then((data) => {
+          if (data.length === 1) {
+            fetch(
+              `https://sheetdb.io/api/v1/i8z42whbaabc6/NIM /${studentNIM}`,
+              {
+                method: "PATCH",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  data: {
+                    "Status ": present,
+                    "Date ": localTime,
+                  },
+                }),
+              }
+            )
+              .then((response) => response.json())
+              .then(() => {
+                h2.innerHTML = `Student ${late}`;
+                nfcLogo.src = "../../assets/icons/done.svg";
+                p1.innerHTML = `The student is ${late}`;
 
-          setTimeout(() => {
-            h2.innerHTML = "Ready to Scan";
-            nfcLogo.src = "../../assets/icons/nfc-logo.svg";
-            p1.innerHTML = "Scan the device to the NFC tag.";
-          }, 2000);
+                setTimeout(() => {
+                  h2.innerHTML = "Ready to Scan";
+                  nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+                  p1.innerHTML = "Scan the device to the NFC tag.";
+                }, 2000);
+              });
+          } else {
+            h2.innerHTML = `Not found student`;
+            nfcLogo.src = "../../assets/icons/close.svg";
+            p1.innerHTML = `Student is not registered in class.`;
+
+            setTimeout(() => {
+              h2.innerHTML = "Ready to Scan";
+              nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+              p1.innerHTML = "Scan the device to the NFC tag.";
+            }, 2000);
+          }
         });
     } else {
-      const spreadSheetData = {
-        spreadSheetData: {
-          "#": "INCREMENT",
-          "Student Name": fullName,
-          "NIM ": studentNIM,
-          "Status ": absent,
-          "Date ": localTime,
-        },
-      };
-      fetch(endpoint, {
-        method: "POST",
-        body: JSON.stringify(spreadSheetData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      fetch(`https://sheetdb.io/api/v1/i8z42whbaabc6/search?NIM =${studentNIM}`)
         .then((response) => response.json())
-        .then(() => {
-          h2.innerHTML = `Student ${absent}`;
-          nfcLogo.src = "../../assets/icons/done.svg";
-          p1.innerHTML = `The student is ${absent}`;
+        .then((data) => {
+          if (data.length === 1) {
+            fetch(
+              `https://sheetdb.io/api/v1/i8z42whbaabc6/NIM /${studentNIM}`,
+              {
+                method: "PATCH",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                  data: {
+                    "Status ": present,
+                    "Date ": localTime,
+                  },
+                }),
+              }
+            )
+              .then((response) => response.json())
+              .then(() => {
+                h2.innerHTML = `Student ${absent}`;
+                nfcLogo.src = "../../assets/icons/done.svg";
+                p1.innerHTML = `The student is ${absent}`;
 
-          setTimeout(() => {
-            h2.innerHTML = "Ready to Scan";
-            nfcLogo.src = "../../assets/icons/nfc-logo.svg";
-            p1.innerHTML = "Scan the device to the NFC tag.";
-          }, 2000);
+                setTimeout(() => {
+                  h2.innerHTML = "Ready to Scan";
+                  nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+                  p1.innerHTML = "Scan the device to the NFC tag.";
+                }, 2000);
+              });
+          } else {
+            h2.innerHTML = `Not found student`;
+            nfcLogo.src = "../../assets/icons/close.svg";
+            p1.innerHTML = `Student is not registered in class.`;
+
+            setTimeout(() => {
+              h2.innerHTML = "Ready to Scan";
+              nfcLogo.src = "../../assets/icons/nfc-logo.svg";
+              p1.innerHTML = "Scan the device to the NFC tag.";
+            }, 2000);
+          }
         });
     }
   } else {
