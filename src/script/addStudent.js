@@ -99,6 +99,9 @@ const addStudent = (userId) => {
           const className = addStudentForm["class"].value;
           const firstName = addStudentForm["first-name"].value;
           const lastName = addStudentForm["last-name"].value;
+          const fullName = `${lastName}, ${firstName}`;
+
+          addStudentToSpreadsheet(fullName, studentNIM);
 
           const classRef = ref(
             db,
@@ -115,21 +118,18 @@ const addStudent = (userId) => {
               nfcLogo.src = "../../assets/icons/done.svg";
               addStudentForm.reset();
             })
-            .catch((error) => {
-              alert(error);
+            .catch(() => {
               h2.innerHTML = "Not Ready to Add";
               p1.innerHTML = "NFC is not supported on your device.";
               nfcLogo.src = "../../assets/icons/close.svg";
             });
         })
-        .catch((error) => {
-          alert(error);
+        .catch(() => {
           h2.innerHTML = "Not Ready to Add";
           p1.innerHTML = "NFC is not supported on your device.";
           nfcLogo.src = "../../assets/icons/close.svg";
         });
     } else {
-      alert("NFC not supported on your device.");
       h2.innerHTML = "Not Ready to Add";
       p1.innerHTML = "NFC is not supported on your device.";
       nfcLogo.src = "../../assets/icons/close.svg";
@@ -140,5 +140,23 @@ const addStudent = (userId) => {
       writeNfc.classList.toggle("fade-out");
       location.reload();
     });
+  });
+};
+
+const addStudentToSpreadsheet = (fullName, studentNIM) => {
+  const endpoint = `https://sheetdb.io/api/v1/i8z42whbaabc6`;
+  const spreadSheetData = {
+    spreadSheetData: {
+      "#": "INCREMENT",
+      "Student Name": fullName,
+      "NIM ": studentNIM,
+    },
+  };
+  fetch(endpoint, {
+    method: "POST",
+    body: JSON.stringify(spreadSheetData),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 };
